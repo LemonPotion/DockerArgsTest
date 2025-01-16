@@ -1,0 +1,11 @@
+﻿services:
+  db_migrator:
+    container_name: db_migrator
+    build:
+      context: .
+      dockerfile: ConsoleApp1/Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - CONNECTION_STRING=${CONNECTION_STRING}
+    entrypoint: dotnet Personnel.Infrastructure.Migrator.dll --${CONNECTION_STRING}
